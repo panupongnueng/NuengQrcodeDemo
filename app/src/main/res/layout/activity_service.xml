@@ -15,6 +15,12 @@
         android:layout_height="match_parent">
 
         <!--Toolbar-->
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarService"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"/>
 
         <!--Content of Fragment-->
 
