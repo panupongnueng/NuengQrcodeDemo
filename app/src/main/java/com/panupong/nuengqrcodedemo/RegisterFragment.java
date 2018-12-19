@@ -1,7 +1,9 @@
 package com.panupong.nuengqrcodedemo;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +14,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 
 /**
@@ -53,7 +63,7 @@ public class RegisterFragment extends Fragment {
         EditText emailEditText = getView().findViewById(R.id.edtEmail);
         EditText passwordEditText = getView().findViewById(R.id.edtPassword);
 
-        String nameString = nameEditText.getText().toString().trim();
+        final String nameString = nameEditText.getText().toString().trim();
         String emailString = emailEditText.getText().toString().trim();
         String passwordString = passwordEditText.getText().toString().trim();
 
@@ -65,7 +75,36 @@ public class RegisterFragment extends Fragment {
         } else {
 //            No space
 
-        }
+            final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+            firebaseAuth.createUserWithEmailAndPassword(emailString,passwordString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+
+
+                    if (task.isSuccessful()) {
+
+                        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                        UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder().setDisplayName(nameString).build();
+                        firebaseUser.updateProfile(userProfileChangeRequest).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                    startActivity(new Intent(getActivity(),ServiceActivity.class));
+                                    getActivity().finish();
+                            }
+                        });
+
+                    } else {
+                        MyAlert myAlert = new MyAlert(getActivity());
+                        myAlert.normalDialog("Can't Register",task.getException().toString());
+
+                    }
+                }
+            });
+
+
+
+
+        }// if
 
 
     }
