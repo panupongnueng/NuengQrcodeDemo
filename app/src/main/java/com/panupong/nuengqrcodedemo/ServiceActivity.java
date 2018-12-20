@@ -70,6 +70,17 @@ public class ServiceActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
 
+//        For QR
+        if (item.getItemId() == R.id.itemQR) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.contentServiceFragment,new QRcodeFragment())
+                    .addToBackStack(null)
+                    .commit();
+            return true;
+        }
+
+
 //        For Hambaker
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
 
