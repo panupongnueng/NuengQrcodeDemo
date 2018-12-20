@@ -8,6 +8,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 
 /**
@@ -50,10 +56,31 @@ public class DetailFragment extends Fragment {
 
         receiveValue();
 
+//        Show View
+
+
+        showView();
+
+
 
 
 
     }//Main Method
+
+    private void showView() {
+        TextView nameTextView = getView().findViewById(R.id.txtNameProduct);
+        TextView descripTextView = getView().findViewById(R.id.txtDescription);
+        TextView amountTextView = getView().findViewById(R.id.txtAmount);
+        TextView receiveTextView = getView().findViewById(R.id.txtReceive);
+        ImageView imageView = getView().findViewById(R.id.imvProduct);
+
+        nameTextView.setText(nameProductString);
+        descripTextView.setText(descriptionString);
+        amountTextView.setText("Amount ==> "+amountString+" unit");
+        receiveTextView.setText(receiveString);
+        Picasso.get().load(pictureString).into(imageView);
+
+    }
 
     private void receiveValue() {
         nameProductString = getArguments().getString("NameProduct","NameProduct");
