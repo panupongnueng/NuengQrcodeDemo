@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!--content-->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--text-->
+        <RelativeLayout
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:layout_width="0dp"
+            android:layout_height="150dp">
+
+            <!--name-->
+            <TextView
+                android:id="@+id/txtNameProduct"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                android:text="NameProduct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <!--description-->
+            <TextView
+                android:id="@+id/txtDescription"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:layout_below="@+id/txtNameProduct"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="italic"
+                android:textSize="18sp"
+                android:text="Description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <!--amount-->
+            <TextView
+                android:id="@+id/txtAmount"
+                android:layout_alignParentBottom="true"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                android:text="Amount = 100"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </RelativeLayout>
+
+
+        <!--picture-->
+
+        <ImageView
+            android:id="@+id/imvProduct"
+            android:layout_weight="1"
+            android:src="@drawable/logo1"
+            android:scaleType="centerInside"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
