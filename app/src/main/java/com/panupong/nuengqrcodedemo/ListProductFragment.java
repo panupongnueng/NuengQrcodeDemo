@@ -101,7 +101,26 @@ public class ListProductFragment extends Fragment {
                         nameProductStringArrayList,
                         descriptionStringArrayList,
                         amountStringArrayList,
-                        pictureStringArrayList
+                        pictureStringArrayList,
+                        new OnClickItem() {
+                            @Override
+                            public void onClickItem(View view, int position) {
+                                Log.d("20decV2","position ==> "+position);
+
+                                getActivity()
+                                        .getSupportFragmentManager()
+                                        .beginTransaction()
+                                        .replace(R.id.contentServiceFragment,DetailFragment.detailInstance(
+                                                nameProductStringArrayList.get(position),
+                                                descriptionStringArrayList.get(position),
+                                                pictureStringArrayList.get(position),
+                                                receiveStringArrayList.get(position),
+                                                amountStringArrayList.get(position)))
+                                        .addToBackStack(null)
+                                        .commit();
+
+                            }
+                        }
 
                 );
 
